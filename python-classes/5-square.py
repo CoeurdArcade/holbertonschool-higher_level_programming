@@ -1,7 +1,81 @@
 #!/usr/bin/python3
 """Defines a Square class."""
 
-class Square:
+class Rectangle:
+    """Represent a rectangle."""
+
+    def __init__(self, width=0, height=0):
+        """Initialize a new Rectangle.
+
+        Args:
+            width (int): The width of the new rectangle.
+            height (int): The height of the new rectangle.
+        """
+        self.width = width
+        self.height = height
+
+    @property
+    def width(self):
+        """Get/set the width of the Rectangle."""
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer")
+        if value < 0:
+            raise ValueError("width must be >= 0")
+        self.__width = value
+
+    @property
+    def height(self):
+        """Get/set the height of the Rectangle."""
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        if not isinstance(value, int):
+            raise TypeError("height must be an integer")
+        if value < 0:
+            raise ValueError("height must be >= 0")
+        self.__height = value
+
+    def area(self):
+        """Return the area of the Rectangle."""
+        return (self.__width * self.__height)
+
+    def perimeter(self):
+        """Return the perimeter of the Rectangle."""
+        if self.__width == 0 or self.__height == 0:
+            return (0)
+        return ((self.__width * 2) + (self.__height * 2))
+
+    def __str__(self):
+        """Return the printable representation of the Rectangle.
+
+        Represents the rectangle with the # character.
+        """
+        if self.__width == 0 or self.__height == 0:
+            return ("")
+
+        rect = []
+        for i in range(self.__height):
+            [rect.append('#') for j in range(self.__width)]
+            if i != self.__height - 1:
+                rect.append("\n")
+        return ("".join(rect))
+
+    def __repr__(self):
+        """Return the string representation of the Rectangle."""
+        rect = "Rectangle(" + str(self.__width)
+        rect += ", " + str(self.__height) + ")"
+        return (rect)
+
+    def __del__(self):
+        """Print a message for every deletion of a Rectangle."""
+        print("Bye rectangle...")
+
+class Square(Rectangle):
     """Represent a square."""
 
     def __init__(self, size=0):
@@ -10,49 +84,21 @@ class Square:
         Args:
             size (int): The size of the new square.
         """
-        self.size = size
+        super().__init__(size, size)
 
     @property
     def size(self):
         """Get/set the size of the Square."""
-        return self.__size
+        return self.width
 
     @size.setter
     def size(self, value):
-        if not isinstance(value, int):
-            raise TypeError("size must be an integer")
-        if value < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = value
-
-    def area(self):
-        """Return the area of the Square."""
-        return (self.__size * self.__size)
-
-    def perimeter(self):
-        """Return the perimeter of the Square."""
-        if self.__size == 0:
-            return (0)
-        return (self.__size * 4)
-
-    def __str__(self):
-        """Return the printable representation of the Square.
-
-        Represents the square with the # character.
-        """
-        if self.__size == 0:
-            return ("")
-
-        square = []
-        for i in range(self.__size):
-            [square.append('#') for j in range(self.__size)]
-            if i != self.__size - 1:
-                square.append("\n")
-        return ("".join(square))
+        self.width = value
+        self.height = value
 
     def __repr__(self):
         """Return the string representation of the Square."""
-        return f"Square({self.__size})"
+        return f"Square({self.size})"
 
     def __del__(self):
         """Print a message for every deletion of a Square."""
