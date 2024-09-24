@@ -1,23 +1,18 @@
 #!/usr/bin/python3
+"""Defines a class-checking function."""
 
-# Import the is_same_class function from the '2-is_same_class' module
-is_same_class = __import__('2-is_same_class').is_same_class
+def is_same_class(obj, a_class):
+    """Check if an object is exactly an instance of a given class.
 
-# Define a variable 'a' and assign it the value 1
-a = 1
+    Args:
+        obj (any): The object to check.
+        a_class (type): The class to match the type of obj to.
 
-# Check if 'a' is an instance of the class 'int' using the is_same_class function
-if is_same_class(a, int):
-    # If true, print that 'a' is an instance of the class 'int'
-    print("{} is an instance of the class {}".format(a, int.__name__))
-
-# Check if 'a' is an instance of the class 'float' using the is_same_class function
-if is_same_class(a, float):
-    # If true, print that 'a' is an instance of the class 'float'
-    print("{} is an instance of the class {}".format(a, float.__name__))
-
-# Check if 'a' is an instance of the class 'object' using the is_same_class function
-if is_same_class(a, object):
-    # If true, print that 'a' is an instance of the class 'object'
-    print("{} is an instance of the class {}".format(a, object.__name__))
+    Returns:
+        bool: True if obj is exactly an instance of a_class, False otherwise.
+    """
+    # Check if the type of the object is exactly the same as the given class
+    if type(obj) == a_class:
+        return True
+    return False
 
