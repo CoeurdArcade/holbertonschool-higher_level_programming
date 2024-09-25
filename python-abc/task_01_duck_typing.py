@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-import math
-import logging
 from abc import ABC, abstractmethod
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# Define a constant for Pi
+PI = 3.14159
 
 class Shape(ABC):
     """
@@ -55,7 +53,7 @@ class Circle(Shape):
         Returns:
             float: The area of the circle.
         """
-        return math.pi * self.radius ** 2
+        return PI * self.radius ** 2
 
     def perimeter(self) -> float:
         """
@@ -64,7 +62,7 @@ class Circle(Shape):
         Returns:
             float: The perimeter of the circle.
         """
-        return 2 * math.pi * self.radius
+        return 2 * PI * self.radius
 
 class Rectangle(Shape):
     """
@@ -104,13 +102,13 @@ class Rectangle(Shape):
 
 def shape_info(shape: Shape) -> None:
     """
-    Log the area and perimeter of a shape.
+    Print the area and perimeter of a shape.
 
     Args:
         shape (Shape): The shape object.
     """
-    logging.info(f"Area: {shape.area()}")
-    logging.info(f"Perimeter: {shape.perimeter()}")
+    print(f"Area: {shape.area()}")
+    print(f"Perimeter: {shape.perimeter()}")
 
 def main():
     """
@@ -123,9 +121,9 @@ def main():
         shape_info(circle)
         shape_info(rectangle)
     except ValueError as ve:
-        logging.error(f"ValueError: {ve}")
+        print(f"ValueError: {ve}")
     except Exception as e:
-        logging.error(f"An error occurred: {e}")
+        print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     main()
