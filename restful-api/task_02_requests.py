@@ -1,40 +1,57 @@
 #!/usr/bin/python3
+"""
+task_02_requests.py fetches all posts from JSONPlaceholder
+
+Attributes:
+    url (str): url of JSONPlaceholder
+    res (object): response from http request
+    json_data (object): response as json
+"""
 import requests
 import csv
 
-def fetch_posts():
-    try:
-        response = requests.get("https://jsonplaceholder.typicode.com/posts/")
-        response.raise_for_status()  # Raise an HTTPError for bad responses
-        return response.json()
-    except requests.RequestException as e:
-        print(f"Error fetching posts: {e}")
-        return None
 
 def fetch_and_print_posts():
-    posts = fetch_posts()
-    if posts:
-        for post in posts:
-            print(post['title'])
+    """
+    Fetches all posts from JSONPlaceholder and prints the titles.
+    """
+    url = "https://jsonplaceholder.typicode.com/posts"
+
+    try:
+        res = requests.get(url)
+        res.raise_for_status()  # Raise an exception for HTTP errors
+    except requests.RequestException as e:
+        print(f"Failed to retrieve data: {e}")
+        return
+
+    print("Status Code: {}".format(res.status_code))
+
+    if res.headers.get("Content-Type") == "application/json; charset=utf-8":
+        json_data = res.json()
+        for post in json_data:
+            print(post["title"])
 
 def fetch_and_save_posts():
-    posts = fetch_posts()
-    if posts:
-        structured_posts = []
+    """
+    Fetches all posts from JSONPlaceholder and saves them in a csv file.
+    """
+    url = "https://jsonplaceholder.typicode.com/posts"
 
-        for post in posts:
-            new_post = {
-                'id': post['id'],
-                'title': post['title'],
-                'body': post['body']
-            }
-            structured_posts.append(new_post)
+    try:
+        res = requests.get(url)
+    except:
+        print("Failed to retrieve data")
+        return
 
-        with open('posts.csv', 'w', newline='') as file:
-            writer = csv.DictWriter(file, fieldnames=['id', 'title', 'body'])
-            writer.writeheader()
-            writer.writerows(structured_posts)
+    json_data = res.json()
 
-if __name__ == "__main__":
-    fetch_and_print_posts()
-    fetch_and_save_posts()
+    csvfile = "posts.csv"
+
+    filtered_data = [{key: post[key] for key in ('id', 'title', 'body')} for post in json_data]
+
+    headers = ['id', 'title', 'body']
+
+    with open(csvfile, "w", newline="") as file:
+        csv_write = csv.DictWriter(file, fieldnames=headers)
+        csv_write.writeheader()
+        csv_write.writerows(filtered_data)
