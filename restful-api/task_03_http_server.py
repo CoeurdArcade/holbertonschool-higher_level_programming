@@ -41,8 +41,7 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"404 Not Found")
 
-Handler = MyHandler
 
-with http.server.HTTPServer(("", PORT), Handler) as httpd:
+with http.server.HTTPServer(("", PORT), MyHandler) as httpd:
     print(f"Serving at port {PORT}")
     httpd.serve_forever()
