@@ -1,0 +1,140 @@
+Basics of HTTP/HTTPS :
+
+1.
+HTTP (HyperText Transfer Protocol) et HTTPS (HyperText Transfer Protocol Secure) sont des protocoles utilisés pour transférer des données sur le web.
+La principale différence entre HTTP et HTTPS est la sécurité des données échangées.
+HTTPS offre une couche de protection supplémentaire grâce au cryptage qui utilise le protocole SSL/TLS (Secure Sockets Layer / Transport Layer Security), rendant la navigation et les transactions en ligne plus sûres.
+Les navigateurs affichent généralement un cadenas dans la barre d'adresse pour indiquer que la connexion est sécurisée.
+Les sites HTTPS bénéficient d'un léger avantage en termes de référencement (SEO) car ils sont considérés comme plus sûrs et fiables.
+
+2.
+Structure d'une Requête HTTP :
+    Ligne de requête : Indique le type de requête (méthode), le chemin de la ressource, et la version du protocole.
+    En-têtes de requête : Fournissent des informations supplémentaires sur la requête ou sur le client.
+    Corps de la requête (facultatif) : Contient des données à envoyer au serveur (par exemple, des données de formulaire).
+
+Exemple de Requête HTTP
+'''
+    GET /index.html HTTP/1.1
+    Host: www.example.com
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+    Accept-Language: en-US,en;q=0.5
+    Accept-Encoding: gzip, deflate
+    Connection: keep-alive
+'''
+
+Structure d'une Réponse HTTP
+    Ligne de statut : Indique la version du protocole, le code d'état, et une phrase de statut.
+    En-têtes de réponse : Fournissent des informations supplémentaires sur la réponse ou sur le serveur.
+    Corps de la réponse (facultatif) : Contient les données renvoyées au client (par exemple, le contenu d'une page web).
+
+Exemple de Réponse HTTP
+'''
+    HTTP/1.1 200 OK
+    Date: Mon, 31 May 2024 12:34:56 GMT
+    Server: Apache/2.4.41 (Ubuntu)
+    Last-Modified: Tue, 01 Dec 2023 16:00:00 GMT
+    Content-Length: 137
+    Content-Type: text/html; charset=UTF-8
+    Connection: Closed
+'''
+
+3.
+Liste des méthodes courantes HTTP :
+    Méthod : GET
+    Description : Récupère les données.
+    Cas d'utilisation : Récupération d'une page Web ou de donn� a partir d'une API.
+
+    Méthod : POST
+    Description : Envoie des données au serveur pour traitement.
+    Cas d'utilisation : Soumission d'un formulaire, création d'une nouvelle ressource dans une API.
+
+    Méthod : PUT
+    Description : Met a jour ou crée une ressource sur le serveur.
+    Cas d'utilisation : Mise a jour des informations d'un utilisateur, remplacement complet d'une ressource existante.
+
+    Méthod : DELETE
+    Description : Supprime une ressource.
+    Cas d'utilisation : Suppression d'un compte utilisateur, suppression d'un article dans une base de données.
+
+    Méthod : PATCH
+    Description : Applique des modifications partielles a une ressource.
+    Cas d'utilisation : Mise a jour partielle des informations d'un utilisateur, modification de champs spécifiques d'une ressource.
+
+    Méthod : HEAD
+    Description : Récupère les en-têtes de réponse sans le corps de la ré.
+    Cas d'utilisation : Vérification de l'existence d'une ressource, récupération des métadonnées sans transférer le c.
+
+    Méthod : OPTIONS
+    Description : Récupère leméthodes HTTP supportées par le serveur pour une ressource spécifi.
+    Cas d'utilisation : Vérificaion des capacités d'une API, détermination des méthodes autorisées avant une requête CORS.
+
+    Méthod : CONNECT
+    Description : Etablit un tunnel de communication bidirectionnel via le serveur (généralement utilisé pour le S.
+    Cas d'utilisation : Création d'une connexion sécurisée via un pro
+
+    Méthod : TRACE
+    Description : Echo la requete reçue pour tester le chemin de la requête via le serveu
+    Cas d'utilisation : Débogage, diagnotic de réseau pour voir ce que reçoit le serv.
+
+Liste des codes d'état courants HTTP :
+    Code d'éta : 200
+    Description : Succès
+    Scénari : La requête a été traitée avec s et la réponse contient le résultat demandé, par exemple, la récupération réussage.
+
+    Code d'éta : 201
+    Description : Créé
+    Scénari : Une nouvelle ressource a été créée avec succès, par exemple, après la soumission réussie d'un formulaire d'inscription d'util.
+
+    Code d'éta : 204
+    Description : Pas de contenu
+    Scénrio : La requête a été traitée avec succès mais il n'y a pas de co a renvoyer, par exemple, après la suppression d'une ressource.
+
+    Code d'éta : 301
+    Description : Redirection permanente
+    Scénari : La ressource demandée a été déplacée de façon perm a une nouvelle URL, par exemple, redirection d'un ancien site Web vers un nouveau.
+
+    Code d'éta : 302
+    Description : Redirection temporaire
+    Scénari : La ressource demandée est temporairement disponibl a une autre URL, par exemple, pendant la maintenance d'une page.
+
+    Code d'éta : 400
+    Description : Mauvaise requête
+    Scénari : La requête est mal formée ou contient des données invalides, par exemple, un formulaire soumis avec des champs obligatoires manqua.
+
+    Code d'éta : 401
+    Description : Non autorisé
+    Scénari : L'authentification est nécessaire et a échoué ou n'a pas été fournie, par exemple,  a une page nécessitant une connexion sans être aut.
+
+    Code d'éta : 403
+    Description : Interdit
+    Scénari : Le serveur comprend la requête mais refuse de l'exécuter, par exemple, acc a une ressource restreinte a certains utilisateurs.
+
+    Code d'éta : 404
+    Description : Introuvable
+    Scénari : La page ou ressource demandée n'est pas disponible sur le serveur, par exemple, une URL mal tapée ou une page supprim.
+
+    Code d'éta : 405
+    Description : Méthode non autorisée
+    Scénari : La méthode HTTP utilisée n'est pas autorisée pour la ressource demandée, par exemple, utilisation de POST sur une ressource qui n'accepte que.
+
+    Code d'éta : 409
+    Description : Conflit
+    Scénari : La requête ne peut pas être traitée en raison d'un conflit avec l'état actuel de la ressource, par exemple, un conflit d'édition simultanée de la même re.
+
+    Code d'éta : 500
+    Description : Erreur interne du serveur
+    Scénari : Le serveur a rencontré une condition inattendue qui l'a empêché de traiter la requête, par exemple, une exception non gérée dans le code se
+
+    Code d'éta : 502
+    Description : Mauvaise passerelle
+    Scénari : Le serveur, en tant que passerelle ou proxy, a reçu une réponse invalide de la part du serveur en amont, par exemple, un serveur en amont est hors servi.
+
+    Code d'éta : 503
+    Description : Service indisponible
+    Scénari : Le serveur est actuellement incapable de traiter la requête en raison d'une surcharge ou d'une maintenance, par exemple, un serveur surchargé pendant un pic de traf.
+
+    Code d'éta : 504
+    Description : Temps d'attente de la passerelle épuisé
+    Scénari : Le serveur, en tant que passerelle ou proxy, n'a pas reçu de réponse en temps voulu du serveur en amont, par exemple, un serveur en amont très lent ou injoignab
