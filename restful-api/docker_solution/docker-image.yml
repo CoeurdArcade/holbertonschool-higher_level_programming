@@ -1,0 +1,23 @@
+name: Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.CR_PAT }}/docker-image:${{ github.sha }} .
+
+      - name: Log in to GitHub Container Registry
+        run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u itzreone --password-stdin
+
+      - name: Push Docker image to registry
+        run: docker push ${{ secrets.CR_PAT }}/docker-image:${{ github.sha }}
