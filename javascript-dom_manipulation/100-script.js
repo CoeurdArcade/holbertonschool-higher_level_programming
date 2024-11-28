@@ -1,28 +1,25 @@
-const addButton = document.querySelector('#add_item');
-const removeButton = document.querySelector('#remove_item');
-const clearButton = document.querySelector('#clear_list');
+document.addEventListener('DOMContentLoaded', function () {
+	const addItemButton = document.getElementById('add_item');
+	const removeItemButton = document.getElementById('remove_item');
+	const clearListButton = document.getElementById('clear_list');
 
-addButton.addEventListener('click', () => addLI());
-removeButton.addEventListener('click', () => removeLI());
-clearButton.addEventListener('click', () => clearLI());
+	const list = document.querySelector('.my_list');
 
-function addLI () {
-  const element = document.querySelector('.my_list');
-  const newLI = document.createElement('LI');
-  const text = document.createTextNode('Item');
+	addItemButton.addEventListener('click', function() {
+		const newItem = document.createElement('li');
+		newItem.textContent = 'Item';
+		list.appendChild(newItem);
+	});
 
-  newLI.appendChild(text);
-  element.appendChild(newLI);
-}
+	removeItemButton.addEventListener('click', function() {
+		if (list.lastChild) {
+			list.removeChild(list.lastChild);
+		}
+	});
 
-function removeLI () {
-  const element = document.querySelector('.my_list');
-  element.removeChild(element.lastChild);
-}
-
-function clearLI () {
-  const element = document.querySelector('.my_list');
-  while (element.hasChildNodes()) {
-    element.removeChild(element.lastChild);
-  }
-}
+	clearListButton.addEventListener('click', function() {
+		while (list.firstChild) {
+			list.removeChild(list.firstChild);
+		}
+	});
+});
