@@ -1,12 +1,12 @@
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById('toggle_header').addEventListener('click', function() {
-    let header = document.querySelector('header');
-    if (header.classList.contains('red')) {
-      header.classList.remove('red');
-      header.classList.add('green');
-    } else {
-      header.classList.remove('green');
-      header.classList.add('red');
-    }
-  });
+const toggleHeaderButton = document.getElementById('toggle_header');
+
+toggleHeaderButton.addEventListener('click', function() {
+	const headerElement = document.querySelector('header');
+	if (headerElement.classList.contains('red')) {
+		headerElement.classList.remove('red');
+		headerElement.classList.add('green');
+	} else {
+		headerElement.classList.remove('green');
+		headerElement.classList.add('red');
+	}
 });
